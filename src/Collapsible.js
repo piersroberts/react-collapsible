@@ -7,6 +7,7 @@ var Collapsible = React.createClass({
   propTypes: {
     transitionTime: React.PropTypes.number,
     easing: React.PropTypes.string,
+    do: React.PropTypes.string,
     open: React.PropTypes.bool,
     classParentString: React.PropTypes.string,
     accordionPosition: React.PropTypes.number,
@@ -99,6 +100,20 @@ var Collapsible = React.createClass({
     });
   },
 
+  componentWillReceiveProps: function (newProps) {
+    switch (newProps.do) {
+      case 'open':
+        this.openCollapsible();
+        break;
+      case 'close':
+        this.closeCollapsible();
+        break;
+      case 'toggle':
+        this.toggleCollapsible();
+        break;
+    }
+  },
+
   componentDidUpdate: function(prevProps) {
 
     if(this.state.shouldSwitchAutoOnNextCycle === true && this.state.isClosed === false) {
@@ -124,24 +139,24 @@ var Collapsible = React.createClass({
     }
   },
 
-
   handleTriggerClick: function(event) {
-
     event.preventDefault();
 
     if(this.props.handleTriggerClick) {
       this.props.handleTriggerClick(this.props.accordionPosition);
     }
     else{
-
+      this.toggleCollapsible();
+    }
+  },
+  
+  toggleCollapsible: function() {
       if(this.state.isClosed === true){
         this.openCollasible();
       }
       else {
         this.closeCollapsible();
       }
-    }
-
   },
 
   closeCollapsible: function() {

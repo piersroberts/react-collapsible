@@ -76,6 +76,9 @@ Set to true if you want the Collapsible to begin in the open state. You can also
 ### `classParentString` | *string* | default: Collapsible
 Use this to overwrite the parent CSS class for the Collapsible component parts. Read more in the CSS section below.
 
+### `do` | *string* | default: null
+Immediately change the internal state of the component to be collapsed, or not collapsed or remain the same. Currently understood commands are; 'open', 'close' and 'toggle'. Anything else will do nothing.
+
 ### `handleTriggerClick` | *function*
 Define this to override the click handler for the trigger link.
 
